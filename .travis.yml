@@ -5,3 +5,13 @@ services:
 script:
   - docker build -t luisatomo/node .
   - docker images luisatomo/node
+
+before_deploy:
+  - docker login -u luisatomo -p a123456B!
+
+deploy:
+  provider: script
+  script: docker push luisatomo/node
+  on:
+    branch: master
+    
